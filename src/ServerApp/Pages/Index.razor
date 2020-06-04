@@ -1,0 +1,49 @@
+﻿@page "/"
+@using ServerApp.Data
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<FluentValidatedEditForm Model="@Person" OnValidSubmit="@SubmitValidForm" OnInvalidSubmit="@InvalidForm">
+    <TemplatedValidationSummary Context="ValidationItems">
+        @foreach (var validationItem in ValidationItems)
+        {
+            <div>@validationItem</div>
+        }
+    </TemplatedValidationSummary>
+    <p>
+        <label>Name: </label>
+        <InputText @bind-Value="@Person.Name"/>
+        <ValidationMessage For="@(() => Person.Name)"/>
+    </p>
+
+    <p>
+        <label>Age: </label>
+        <InputNumber @bind-Value="@Person.Age"/>
+        <ValidationMessage For="@(() => Person.Age)"/>
+    </p>
+
+    <p>
+        <label>Email Address: </label>
+        <InputText @bind-Value="@Person.EmailAddress"/>
+        <ValidationMessage For="@(() => Person.EmailAddress)"/>
+    </p>
+    <button type="submit">Save</button>
+</FluentValidatedEditForm>
+
+@code{
+
+    Person Person { get; set; }= new Person();
+    
+    void SubmitValidForm()
+    {
+        Console.WriteLine("Form Submitted Successfully!");
+    }
+
+    void InvalidForm()
+    {
+        Console.WriteLine("boo");
+    }
+    
+}
