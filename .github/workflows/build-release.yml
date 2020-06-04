@@ -16,16 +16,17 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
+        source-url: https://nuget.pkg.github.com/Blazorator/FluentValidation/index.json
+      env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}} 
     - name: Install dependencies
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-    - name: Set Nuget Feed
-      run: nuget sources Add -Name "github" -Source https://nuget.pkg.github.com/Blazorator/FluentValidation/index.json -UserName TheRubble -Password ${{ secrets.GITHUB_TOKEN }}
     - name: pack
       run: dotnet pack src/Blazorator.FluentValidation/Blazorator.FluentValidation.csproj --no-restore --verbosity normal --output nupkgs -p:PackageVersion=${{ github.event.release.tag_name }}
     - name: publish
-      run: dotnet nuget push "nupkgs/*.nupkg" --source "github"
+      run: dotnet nuget push nupkgs/*.nupkg
     
