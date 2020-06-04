@@ -23,4 +23,6 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
     - name: pack
       run: dotnet pack src/Blazorator.FluentValidation/Blazorator.FluentValidation.csproj --no-restore --verbosity normal --output nupkgs -p:PackageVersion=${{ github.event.release.tag_name }}
+    - name: publish
+      run: dotnet nuget push "nupkgs/*.nupkg" --source "github"
     
