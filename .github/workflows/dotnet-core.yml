@@ -5,9 +5,7 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-  release:
-    types: [published]
-  
+
 jobs:
   build:
 
@@ -38,12 +36,12 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
     
     - name: Pack
-      if: github.event != 'release'
       run: dotnet pack src/Blazorator.FluentValidation/Blazorator.FluentValidation.csproj --configuration Release --no-restore --verbosity normal --output nupkgs -p:PackageVersion=${{ steps.gitversion.outputs.semVer }}-prerelease
-    
-    - name: Pack For Release
-      if: github.event == 'release'
-      run: dotnet pack src/Blazorator.FluentValidation/Blazorator.FluentValidation.csproj --configuration Release --no-restore --verbosity normal --output nupkgs -p:PackageVersion=${{ steps.gitversion.outputs.semVer }}
     
     - name: Push
       run: dotnet nuget push nupkgs/*.nupkg --api-key ${{ secrets.MYGET_API_KEY }} -s https://www.myget.org/F/blazorator/api/v3/index.json
+      
+    - name: Tag
+      if: github.ref == 'refs/heads/master'
+      run: git tag v${{ steps.gitversion.outputs.majorMinorPatch }}
+      
