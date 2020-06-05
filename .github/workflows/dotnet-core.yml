@@ -38,11 +38,11 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
     
     - name: Pack
-      if: github.event != "release"
+      if: github.event != 'release'
       run: dotnet pack src/Blazorator.FluentValidation/Blazorator.FluentValidation.csproj --configuration Release --no-restore --verbosity normal --output nupkgs -p:PackageVersion=${{ steps.gitversion.outputs.semVer }}-prerelease
     
     - name: Pack For Release
-      if: github.event == "release"
+      if: github.event == 'release'
       run: dotnet pack src/Blazorator.FluentValidation/Blazorator.FluentValidation.csproj --configuration Release --no-restore --verbosity normal --output nupkgs -p:PackageVersion=${{ steps.gitversion.outputs.semVer }}
     
     - name: Push
