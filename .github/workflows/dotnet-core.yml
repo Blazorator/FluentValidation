@@ -39,13 +39,14 @@ jobs:
       run: dotnet pack src/Blazorator.FluentValidation/Blazorator.FluentValidation.csproj --configuration Release --no-restore --verbosity normal --output nupkgs -p:PackageVersion=${{ steps.gitversion.outputs.semVer }}-prerelease
     
     - name: Push
+      if: github.repository == 'Blazorator/FluentValidation'
       run: dotnet nuget push nupkgs/*.nupkg --api-key ${{ secrets.MYGET_API_KEY }} -s https://www.myget.org/F/blazorator/api/v3/index.json
       
     - name: Tag
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/master' && github.repository == 'Blazorator/FluentValidation'
       run: git tag v${{ steps.gitversion.outputs.majorMinorPatch }}
     
     - name: Push Tag
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/master' && github.repository == 'Blazorator/FluentValidation'
       run: git push origin v${{ steps.gitversion.outputs.majorMinorPatch }}
       
