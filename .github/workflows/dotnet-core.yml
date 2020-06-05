@@ -31,6 +31,10 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore /p:Version=${{ steps.gitversion.outputs.majorMinorPatch }}
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+    - name: Pack
+      run: dotnet pack /src/Blazorator.FluentValidation.csproj --configuration Release --no-restore --verbosity normal --output nupkgs -p:PackageVersion=${{ steps.gitversion.outputs.semVer }}-prerelease
+    - name: Push
+      run: dotnet nuget push nupkgs/*.nupkg --api-key ${{ secrets.MYGET_API_KEY }} -s https://www.myget.org/F/blazorator/api/v3/index.json
