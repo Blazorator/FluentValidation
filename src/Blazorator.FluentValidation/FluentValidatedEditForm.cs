@@ -118,11 +118,10 @@ namespace Blazorator.FluentValidation
                                 $"The following rules is async - {ruleValidator.GetType()}");
                         }
                     }
-
-                    var validationResults = validatorRuleSet.Validate(context);
-                    _validationMessageStore.Add(e.FieldIdentifier,
-                        validationResults.Errors.Select(error => error.ErrorMessage));
                 }
+                
+                var validationResults = validatorRuleSet.Validate(context);
+                _validationMessageStore.Add(e.FieldIdentifier, validationResults.Errors.Select(error => error.ErrorMessage));
             }
 
             _fixedEditContext.NotifyValidationStateChanged();
@@ -147,9 +146,9 @@ namespace Blazorator.FluentValidation
         private async Task HandleSubmitAsync()
         {
             var validatorType = typeof(IValidator<>).MakeGenericType(_fixedEditContext.Model.GetType());
-            var validators = ServiceProvider.GetServices(validatorType).Where(x => x is IValidationAsyncMarker)
-                .OfType<IValidator>();
-
+            var validators = ServiceProvider.GetServices(validatorType).OfType<IValidator>();
+            var isValid = true;
+            
             _validationMessageStore.Clear();
 
             foreach (var validatorRuleSet in validators)
@@ -159,8 +158,22 @@ namespace Blazorator.FluentValidation
                 {
                     var fieldIdentifier = ToFieldIdentifier(_fixedEditContext, validationResult.PropertyName);
                     _validationMessageStore.Add(fieldIdentifier, validationResult.ErrorMessage);
+
+                    isValid = false;
+
                 }
             }
+
+            if (isValid && OnValidSubmit.HasDelegate)
+            {
+                await OnValidSubmit.InvokeAsync(_fixedEditContext);
+            }
+
+            if (!isValid && OnInvalidSubmit.HasDelegate)
+            {
+                await OnInvalidSubmit.InvokeAsync(_fixedEditContext);
+            }
+            
         }
 
         private static readonly char[] Separators = {'.', '['};

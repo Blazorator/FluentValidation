@@ -5,7 +5,7 @@
 
 Welcome to your new app.
 
-<FluentValidatedEditForm Model="@Person" OnValidSubmit="@SubmitValidForm" OnInvalidSubmit="@InvalidForm">
+<FluentValidatedEditForm Model="@Person" OnValidSubmit="@ValidForm" OnInvalidSubmit="@InvalidForm">
     <TemplatedValidationSummary Context="ValidationItems">
         @foreach (var validationItem in ValidationItems)
         {
@@ -13,6 +13,7 @@ Welcome to your new app.
         }
     </TemplatedValidationSummary>
     <p>
+        <strong>Use the name "Test" to trigger async validation on form submit</strong><br/>
         <label>Name: </label>
         <InputText @bind-Value="@Person.Name"/>
         <ValidationMessage For="@(() => Person.Name)"/>
@@ -32,18 +33,26 @@ Welcome to your new app.
     <button type="submit">Save</button>
 </FluentValidatedEditForm>
 
+<br/>
+
+
+<h3>@Output</h3>
+
 @code{
 
     Person Person { get; set; }= new Person();
+
+    string Output { get; set; } = "Awaiting form submission";
     
-    void SubmitValidForm()
+    void ValidForm()
     {
-        Console.WriteLine("Form Submitted Successfully!");
+        Output = "Form Submitted Successfully.";
+        StateHasChanged();
     }
 
     void InvalidForm()
     {
-        Console.WriteLine("boo");
+        Output = "Form FAILED Submission";
     }
     
 }

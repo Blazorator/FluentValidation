@@ -11,7 +11,7 @@ namespace ServerApp.Data
         public string EmailAddress { get; set; }
     }
 
-    public class PersonValidatorAsync : PersonValidator, IValidationAsyncMarker
+    public class PersonValidatorAsync : AbstractValidator<Person>, IValidationAsyncMarker
     {
         public PersonValidatorAsync()
         {
