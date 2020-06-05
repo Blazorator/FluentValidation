@@ -44,4 +44,8 @@ jobs:
     - name: Tag
       if: github.ref == 'refs/heads/master'
       run: git tag v${{ steps.gitversion.outputs.majorMinorPatch }}
+    
+    - name: Push Tag
+      if: github.ref == 'refs/heads/master'
+      run: git push origin v${{ steps.gitversion.outputs.majorMinorPatch }}
       
