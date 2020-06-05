@@ -1,16 +1,16 @@
 # Blazorator.FluentValidation
 
-##Why another FluentValidation xxx
+## Why another FluentValidation xxx
 
-Other libraries available (That I've found) don't currently deal well with async validation rules (MustAsync). The
+Other libraries available (that I've found) don't currently deal well with async validation rules (MustAsync). The
 current implementation for ```EditForm``` only caters for async if you take full control of the validation (I imagine this will change in the future).
 
 This library builds on the default behaviour while staying close to the ```EditForm``` implementation to feel familiar and splits the validation to allow 
 async rules to execute correctly on full form submission. It's currently implemented using a marker interface.
 
-##Installation
+## Installation
 
-You can install from Nuget using the following command:
+You can install from [NuGet](https://www.nuget.org/packages/Blazorator.FluentValidation/) using the following command:
 
 `Install-Package Blazorator.FluentValidation`
 
@@ -129,5 +129,6 @@ Although all the standard  edit form controls work, it's sometimes useful to hav
 
 The context is an ```IEnumerable<string>```.
 
-###Example(s)
+### Example(s)
+
 Available in the repository.
