@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ServerApp.Data;
 
 namespace ServerApp
 {
@@ -29,7 +28,7 @@ namespace ServerApp
             services.AddRazorPages();
             services.AddServerSideBlazor();
             
-            var results = FluentValidation.AssemblyScanner.FindValidatorsInAssemblyContaining<Startup>();
+            var results = FluentValidation.AssemblyScanner.FindValidatorsInAssemblyContaining<Example.Shared.Person>();
             foreach (var result in results)
             {
                 services.AddTransient(result.InterfaceType, result.ValidatorType);

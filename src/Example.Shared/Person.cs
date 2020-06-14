@@ -2,7 +2,7 @@
 using FluentValidation;
 using Blazorator.FluentValidation.Markers;
 
-namespace ServerApp.Data
+namespace Example.Shared
 {
     public class Person
     {

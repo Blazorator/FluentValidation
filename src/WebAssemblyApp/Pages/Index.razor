@@ -1,5 +1,5 @@
 ﻿@page "/"
-@using ServerApp.Data
+@using Example.Shared
 
 <h1>Hello, world!</h1>
 
@@ -13,37 +13,37 @@ Welcome to your new app.
         }
     </TemplatedValidationSummary>
     <p>
-        <strong>Use the name "Test" to trigger async validation on form submit</strong><br/>
+        <strong>Use the name "Test" to trigger async validation on form submit</strong><br />
         <label>Name: </label>
-        <InputText @bind-Value="@Person.Name"/>
-        <ValidationMessage For="@(() => Person.Name)"/>
+        <InputText @bind-Value="@Person.Name" />
+        <ValidationMessage For="@(() => Person.Name)" />
     </p>
 
     <p>
         <label>Age: </label>
-        <InputNumber @bind-Value="@Person.Age"/>
-        <ValidationMessage For="@(() => Person.Age)"/>
+        <InputNumber @bind-Value="@Person.Age" />
+        <ValidationMessage For="@(() => Person.Age)" />
     </p>
 
     <p>
         <label>Email Address: </label>
-        <InputText @bind-Value="@Person.EmailAddress"/>
-        <ValidationMessage For="@(() => Person.EmailAddress)"/>
+        <InputText @bind-Value="@Person.EmailAddress" />
+        <ValidationMessage For="@(() => Person.EmailAddress)" />
     </p>
     <button type="submit">Save</button>
 </FluentValidatedEditForm>
 
-<br/>
+<br />
 
 
 <h3>@Output</h3>
 
 @code{
 
-    Person Person { get; set; }= new Person();
+    Person Person { get; set; } = new Person();
 
     string Output { get; set; } = "Awaiting form submission";
-    
+
     void ValidForm()
     {
         Output = "Form Submitted Successfully.";
@@ -54,5 +54,5 @@ Welcome to your new app.
     {
         Output = "Form FAILED Submission";
     }
-    
+
 }

@@ -1,15 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazorator.FluentValidation", "src\Blazorator.FluentValidation\Blazorator.FluentValidation.csproj", "{F347F0F6-3222-44B7-A595-19C5011C1F89}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazorator.FluentValidation", "src\Blazorator.FluentValidation\Blazorator.FluentValidation.csproj", "{F347F0F6-3222-44B7-A595-19C5011C1F89}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{DB5C54B1-EC48-464F-9225-9DF4896D63B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerApp", "src\ServerApp\ServerApp.csproj", "{F562E290-E8CB-4036-9522-9BD808F7C751}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerApp", "src\ServerApp\ServerApp.csproj", "{F562E290-E8CB-4036-9522-9BD808F7C751}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".files", ".files", "{672D1644-68A7-4419-B37D-138235A5A704}"
-ProjectSection(SolutionItems) = preProject
-	README.md = README.md
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAssemblyApp", "src\WebAssemblyApp\WebAssemblyApp.csproj", "{DEAD3BAC-FB92-4301-9091-58C612300363}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Shared", "src\Example.Shared\Example.Shared.csproj", "{DA0714A0-EE57-462E-9A79-418DBE625259}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,8 +32,24 @@ Global
 		{F562E290-E8CB-4036-9522-9BD808F7C751}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F562E290-E8CB-4036-9522-9BD808F7C751}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F562E290-E8CB-4036-9522-9BD808F7C751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEAD3BAC-FB92-4301-9091-58C612300363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEAD3BAC-FB92-4301-9091-58C612300363}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEAD3BAC-FB92-4301-9091-58C612300363}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEAD3BAC-FB92-4301-9091-58C612300363}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA0714A0-EE57-462E-9A79-418DBE625259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA0714A0-EE57-462E-9A79-418DBE625259}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA0714A0-EE57-462E-9A79-418DBE625259}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA0714A0-EE57-462E-9A79-418DBE625259}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F562E290-E8CB-4036-9522-9BD808F7C751} = {DB5C54B1-EC48-464F-9225-9DF4896D63B7}
+		{DEAD3BAC-FB92-4301-9091-58C612300363} = {DB5C54B1-EC48-464F-9225-9DF4896D63B7}
+		{DA0714A0-EE57-462E-9A79-418DBE625259} = {DB5C54B1-EC48-464F-9225-9DF4896D63B7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34D4053E-2E55-4BAF-ABC0-E001F61CBC4E}
 	EndGlobalSection
 EndGlobal

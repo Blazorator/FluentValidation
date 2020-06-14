@@ -32,8 +32,8 @@
         {
 
             var platform = RuntimeInformation.IsOSPlatform(OSPlatform.Create("BROWSER"));
-            var desct = RuntimeInformation.FrameworkDescription;
-            return platform ? "WebAssembly" : "ads";
+            return platform ? "WebAssembly" : "Server App";
         }
     }
+
 }
